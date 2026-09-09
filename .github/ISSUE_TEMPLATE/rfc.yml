@@ -87,4 +87,3 @@ body:
       options:
         - label: I understand that opening or discussing this RFC does not approve production implementation.
           required: true
-

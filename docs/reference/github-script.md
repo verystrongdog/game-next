@@ -1,8 +1,11 @@
 # actions/github-script 参考
 
-> Action：`actions/github-script@v9`  
-> 运行时：Node.js 24  
-> 自托管 Runner：`v2.327.1` 或更高  
+> Action：`actions/github-script@v9`
+>
+> 运行时：Node.js 24
+>
+> 自托管 Runner：`v2.327.1` 或更高
+>
 > 来源：[官方 README](https://github.com/actions/github-script/blob/main/README.md)、[Issue Labels API](https://docs.github.com/en/rest/issues/labels)、[Issue Comments API](https://docs.github.com/en/rest/issues/comments)、[Workflow 事件](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows)、[Workflow 权限](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
 
 ## 当前版本与调用方式
@@ -58,4 +61,3 @@ permissions:
 - 2026-09-09：缺少预设标签属于仓库初始化失败，不得静默忽略。
 - 2026-09-09：当前 guard 对所有符合条件的正文/标题编辑一律撤销准入；是否只是无害编辑，
   由重新审查判断。若未来出现重复评论问题，再增加实时状态或评论标记检查，不提前复杂化。
-

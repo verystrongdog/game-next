@@ -33,4 +33,3 @@ create_label "needs:clarification" "d4c5f9" "Issue meaning or scope needs clarif
 create_label "needs:evidence" "c5def5" "Issue needs reproduction or design evidence"
 create_label "needs:decision" "f9d0c4" "Repository owner decision is required"
 create_label "needs:admission-review" "e4e669" "Specification revision needs a new admission review"
-

@@ -101,4 +101,3 @@ body:
       description: List at least one related behavior this report is not asking to change. Reporters may state uncertainty for maintainer triage.
     validations:
       required: true
-

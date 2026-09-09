@@ -34,4 +34,3 @@
 - Do not touch unrelated files or revert user changes.
 - If a task exposes a missing recurring rule, finish or block the task according
   to current policy, then propose a separate workflow revision.
-

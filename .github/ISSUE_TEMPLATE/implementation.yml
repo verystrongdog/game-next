@@ -87,4 +87,3 @@ body:
           required: true
         - label: A substantive specification edit will invalidate admission and return this Issue to triage.
           required: true
-
