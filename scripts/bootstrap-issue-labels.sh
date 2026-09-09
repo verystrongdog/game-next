@@ -21,6 +21,8 @@ create_label() {
 create_label "type:bug" "d73a4a" "Observed behavior contradicts an accepted expectation"
 create_label "type:experiment" "8250df" "Bounded game-design hypothesis test"
 create_label "type:implementation" "1d76db" "Implementation of already accepted design"
+create_label "type:slice" "a371f7" "One integrated playable journey and production target"
+create_label "type:task" "0075ca" "Bounded game-production delivery"
 create_label "type:rfc" "0e8a16" "Consequential decision requiring durable review"
 
 create_label "status:triage" "fbca04" "Draft exists; work is not authorized"

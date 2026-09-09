@@ -1,6 +1,6 @@
-# Executable mirror of docs/workflow/issues.md v0.1.
+# Executable mirror of docs/workflow/issues.md v0.2.
 name: Design implementation
-description: Implement player-visible behavior that has already been accepted.
+description: Integrate player-visible behavior that has already been accepted.
 title: "[Implementation] "
 labels:
   - "type:implementation"
@@ -9,71 +9,73 @@ body:
   - type: markdown
     attributes:
       value: |
-        Do not use this form to decide what the game should be. Unresolved design belongs in an experiment or RFC.
-  - type: input
-    id: milestone
+        Do not use this form to decide what the game should be. Use an Experiment or RFC while player-visible behavior or architecture remains unresolved.
+  - type: dropdown
+    id: risk
     attributes:
-      label: Current playable milestone
-      description: Link the milestone or playable-loop Issue this implementation advances.
+      label: Delivery-risk lane
+      options:
+        - "Standard"
+        - "Strict — core promise, save/data, cross-system, release, or costly change"
+    validations:
+      required: true
+  - type: input
+    id: playable
+    attributes:
+      label: Current playable and parent Slice
+      description: Link the PLAYABLE revision and Slice Issue this behavior advances.
     validations:
       required: true
   - type: textarea
     id: authority
     attributes:
       label: Accepted design authority and revision
-      description: Link the current-design document, ADR, or accepted experiment and name its exact approved revision/decision.
+      description: Link the current-design fragment or ADR and name its exact commit/revision. An accepted Experiment must first promote the chosen behavior here.
     validations:
       required: true
   - type: textarea
     id: behavior
     attributes:
-      label: Player-visible behavior
-      description: Describe what the player can do and what the game visibly or audibly does in response.
-    validations:
-      required: true
-  - type: textarea
-    id: rules
-    attributes:
-      label: Rules, states, and boundaries
-      description: State triggers, transitions, numerical rules, priority, failure behavior, save/load implications, and meaningful edge cases.
-    validations:
-      required: true
-  - type: textarea
-    id: feedback
-    attributes:
-      label: Presentation and comprehension feedback
-      description: Specify the animation, VFX, audio, camera, input, or UI feedback required for the player to understand the behavior.
+      label: Player-visible behavior and limits
+      description: Describe player action, game response, rules, meaningful boundaries, and feedback needed for comprehension.
     validations:
       required: true
   - type: textarea
     id: acceptance
     attributes:
-      label: Behavioral acceptance cases
-      description: Each item must contain a precondition, player/system action, and observable result. Avoid implementation-detail checks.
+      label: Behavioral acceptance examples
+      description: Each example states a precondition, action, and observable result. Experience judgment remains a named playtest decision.
       placeholder: |
         - Given ..., when ..., then the player observes ...
         - Given ..., when ..., then ...
     validations:
       required: true
   - type: textarea
-    id: playable_verification
+    id: integration
     attributes:
-      label: Playable verification
-      description: Name the build and scene/level/setup in which the completed behavior will be played and judged.
+      label: Integration and playable verification
+      description: Name the target build/scene/setup, required child Tasks, and how the integrated result will be reached and played.
     validations:
       required: true
   - type: textarea
-    id: affected
+    id: boundaries
     attributes:
-      label: Affected boundaries and dependencies
-      description: Identify expected impact on Core rules, Unity presentation, content/data, persistence, tooling, and other mechanics. Link dependencies.
+      label: Affected boundaries, dependencies, and regression scope
+      description: Size this detail to the risk lane. Include save/load, content/data, Core/Unity ownership, platform, and adjacent mechanics when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: placeholders
+    attributes:
+      label: Allowed placeholders and remaining debt
+      description: State which art/audio/UI/content may be temporary and how remaining production or verification debt will stay visible.
     validations:
       required: true
   - type: textarea
     id: non_goals
     attributes:
-      label: Non-goals
-      description: List at least one meaningful related behavior or refactor excluded from this implementation.
+      label: Non-goals and rollback
+      description: Exclude adjacent behavior and state how this change can be disabled, reverted, or contained at the selected risk lane.
     validations:
       required: true
   - type: checkboxes
@@ -81,9 +83,9 @@ body:
     attributes:
       label: Implementation contract
       options:
-        - label: The cited design is accepted and current, not merely a discussion or legacy document.
+        - label: The cited design is accepted and current, not merely discussion or legacy material.
           required: true
         - label: No unresolved question remains that could materially change player-visible behavior or architecture.
           required: true
-        - label: A substantive specification edit will invalidate admission and return this Issue to triage.
+        - label: Local completion does not prove delivery until the behavior is integrated and played in the named setup.
           required: true

@@ -1,0 +1,106 @@
+# Executable mirror of docs/workflow/issues.md v0.2.
+name: Playable Slice
+description: Define or revise the one integrated player journey the project will build and judge now.
+title: "[Slice] "
+labels:
+  - "type:slice"
+  - "status:triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A Slice is an integrated playable target, not a complete GDD or a list of every production task. Once accepted, update `PLAYABLE.md` from this contract.
+  - type: dropdown
+    id: slice_action
+    attributes:
+      label: Slice action
+      options:
+        - "Select the first current playable"
+        - "Revise the current playable"
+        - "Complete or replace the current playable"
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Delivery-risk lane
+      description: Use Strict for a public/release commitment, broad cross-system impact, or expensive production promise.
+      options:
+        - "Standard"
+        - "Strict"
+    validations:
+      required: true
+  - type: textarea
+    id: promise
+    attributes:
+      label: Player promise
+      description: Describe the short experience this Slice should let a player have. Do not claim it is already fun.
+    validations:
+      required: true
+  - type: textarea
+    id: journey
+    attributes:
+      label: Entry, playable loop, and exit
+      description: State where play begins, what the player repeatedly does, and how this Slice ends or completes.
+      placeholder: |
+        Entry:
+        Loop:
+        Exit:
+    validations:
+      required: true
+  - type: textarea
+    id: must_prove
+    attributes:
+      label: Must prove
+      description: Name the narrow experience or production question this build must answer. Avoid “make the game fun.”
+    validations:
+      required: true
+  - type: textarea
+    id: target
+    attributes:
+      label: Target scene, setup, build, and date
+      description: Give the intended playable entry point and target build/date where currently known. Mark unknowns honestly.
+    validations:
+      required: true
+  - type: textarea
+    id: placeholders
+    attributes:
+      label: Allowed placeholders and accepted known defects
+      description: State what may remain graybox, temporary, missing, or knowingly defective without invalidating this Slice.
+    validations:
+      required: true
+  - type: textarea
+    id: cut_line
+    attributes:
+      label: Cut first
+      description: List optional content or polish in the order it should be removed if capacity or the target date fails.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Playtest evidence and creative judge
+      description: State what will be observed or recorded, and name the human owner who must directly play and judge the result.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Major dependencies and integration risks
+      description: Name only the systems, content, assets, tools, or external inputs capable of blocking the journey.
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Explicit non-goals
+      description: State what this Slice will not prove or deliver.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Slice contract
+      options:
+        - label: I understand that locally completed Tasks do not prove this Slice until the named journey is integrated and played.
+          required: true

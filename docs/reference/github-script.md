@@ -53,11 +53,15 @@ permissions:
 
 ## Project Notes
 
-- 2026-09-09：`issue-spec-guard.yml` 监听 `issues.edited`。打开的 Issue
-  若处于 `status:ready`、`status:in-progress` 或 `status:verify`，必须先移除活动状态，
-  再添加 `status:triage` 与 `needs:admission-review`，最后评论说明旧批准失效。
+- 2026-09-09：`issue-spec-guard.yml` 监听 `issues.edited`，但只处理
+  `changes.body` 存在的正文修改。打开的 Issue 若处于 `status:ready`、
+  `status:in-progress` 或 `status:verify`，必须先移除活动状态，再添加
+  `status:triage` 与 `needs:admission-review`，最后评论说明旧批准失效。
 - 2026-09-09：Issue 正文属于不可信输入；不要把正文用表达式直接插入
   `script:` 形成 JavaScript 源码。本 guard 不读取正文，只读取事件标签快照。
 - 2026-09-09：缺少预设标签属于仓库初始化失败，不得静默忽略。
-- 2026-09-09：当前 guard 对所有符合条件的正文/标题编辑一律撤销准入；是否只是无害编辑，
-  由重新审查判断。若未来出现重复评论问题，再增加实时状态或评论标记检查，不提前复杂化。
+- 2026-09-09：标题、标签、负责人和里程碑修改不改变正文规格，因此不由当前
+  guard 撤销准入。正文编辑一律撤销；是否只是无害编辑，由重新审查判断。
+  若未来出现重复评论问题，再增加实时状态或评论标记检查，不提前复杂化。
+- 2026-09-09：guard 只是规格漂移提醒器。它不验证 `status:ready` 是否由合法
+  admission record 产生，也不判断游戏体验或 delivery-risk lane。

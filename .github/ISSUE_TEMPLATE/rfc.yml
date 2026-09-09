@@ -1,6 +1,6 @@
-# Executable mirror of docs/workflow/issues.md v0.1.
+# Executable mirror of docs/workflow/issues.md v0.2.
 name: Request for comments
-description: Decide a consequential game, architecture, compatibility, or workflow question.
+description: Decide a consequential game, architecture, compatibility, production, or workflow question.
 title: "[RFC] "
 labels:
   - "type:rfc"
@@ -9,7 +9,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        An RFC authorizes analysis, discussion, and explicitly bounded prototypes. It does not authorize production implementation until accepted.
+        An RFC is always Strict. It authorizes analysis, discussion, and explicitly bounded prototypes, not production implementation until accepted.
   - type: textarea
     id: decision
     attributes:
@@ -18,66 +18,66 @@ body:
     validations:
       required: true
   - type: textarea
-    id: milestone
+    id: playable
     attributes:
-      label: Relationship to current playable milestone
-      description: Link the affected milestone or explain the concrete future constraint this decision protects.
+      label: Current playable relationship or future constraint
+      description: Link the current Slice, or explain the concrete future production constraint this decision protects.
     validations:
       required: true
   - type: textarea
     id: current_state
     attributes:
       label: Current state and constraints
-      description: Describe existing behavior, accepted boundaries, compatibility needs, and evidence. Separate facts from assumptions.
+      description: Describe accepted behavior, production boundaries, compatibility needs, evidence, assumptions, and unknowns separately.
     validations:
       required: true
   - type: textarea
     id: options
     attributes:
       label: Credible options
-      description: Compare at least two real alternatives and include doing nothing when meaningful. Give benefits, costs, risks, and unknowns for each.
+      description: Compare at least two real alternatives and doing nothing when meaningful. Give player/production benefits, costs, risks, and unknowns.
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
       label: Proposed decision and rationale
-      description: State the current recommendation and why it best fits the evidence and constraints. It remains a proposal until accepted.
+      description: State the recommendation and why it best fits current evidence and constraints. It remains a proposal until accepted.
     validations:
       required: true
   - type: textarea
     id: evidence
     attributes:
       label: Evidence and bounded prototypes
-      description: Link code, tests, measurements, diagrams, playtests, or temporary prototypes. State important evidence still missing.
+      description: Link code, tests, measurements, diagrams, grayboxes, builds, or playtests and state evidence still missing.
     validations:
       required: true
   - type: textarea
     id: consequences
     attributes:
       label: Consequences and affected boundaries
-      description: Include new constraints, removed options, Core/Unity/data ownership, compatibility, maintenance cost, and likely follow-up work.
+      description: Include removed options, ownership, save/data compatibility, content cost, pipeline impact, maintenance, and follow-up work.
     validations:
       required: true
   - type: textarea
     id: rollback
     attributes:
       label: Migration, rollback, and failure modes
-      description: Explain how to adopt, reverse, or contain the decision and what can go wrong.
+      description: Explain how to adopt, reverse, contain, and regress-test the decision.
     validations:
       required: true
   - type: textarea
     id: close_condition
     attributes:
       label: Decision and close condition
-      description: Name the owner, what evidence or discussion is still required, and which ADR/current-design artifact will record acceptance.
+      description: Name the owner, remaining evidence, and ADR/current-design fragment that will record acceptance.
     validations:
       required: true
   - type: textarea
     id: non_goals
     attributes:
       label: Non-goals
-      description: List at least one adjacent decision or implementation concern excluded from this RFC.
+      description: Exclude at least one adjacent decision or production concern.
     validations:
       required: true
   - type: checkboxes

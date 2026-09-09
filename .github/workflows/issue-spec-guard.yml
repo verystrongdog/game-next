@@ -11,6 +11,7 @@ permissions:
 jobs:
   invalidate-admission:
     if: >-
+      github.event.changes.body != null &&
       github.event.issue.state == 'open' &&
       (contains(github.event.issue.labels.*.name, 'status:ready') ||
        contains(github.event.issue.labels.*.name, 'status:in-progress') ||
@@ -52,12 +53,12 @@ jobs:
               body: [
                 '## Specification admission invalidated',
                 '',
-                'The Issue body changed after admission. Under `docs/workflow/issues.md` v0.1, work is no longer authorized against the previous revision.',
+                'The Issue body changed after admission. Under `docs/workflow/issues.md` v0.2, work is no longer authorized against the previous revision.',
                 '',
                 'Required next steps:',
                 '1. Describe the change in a revision comment.',
                 '2. Assign the next `rN` specification revision.',
-                '3. Repeat adversarial admission review and owner confirmation.',
+                '3. Repeat the v0.2 risk-sized admission review and owner confirmation.',
                 '4. Remove `needs:admission-review` only after the new revision is admitted.',
               ].join('\n'),
             });

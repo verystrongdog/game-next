@@ -1,6 +1,6 @@
-# Executable mirror of docs/workflow/issues.md v0.1.
-name: Design experiment
-description: Test a player-experience hypothesis without pretending the final design is known.
+# Executable mirror of docs/workflow/issues.md v0.2.
+name: Design or technical experiment
+description: Reduce an important game-design or production unknown through a bounded prototype or spike.
 title: "[Experiment] "
 labels:
   - "type:experiment"
@@ -9,54 +9,90 @@ body:
   - type: markdown
     attributes:
       value: |
-        This Issue authorizes only a bounded prototype and evidence collection after admission. A prototype is not automatically accepted production design.
-  - type: textarea
-    id: observation
+        An admitted Experiment authorizes only its prototype, iteration envelope, and evidence collection. It does not automatically approve production design or prototype code.
+  - type: dropdown
+    id: mode
     attributes:
-      label: Player problem or observation
-      description: Who encounters what problem, in which play moment? Separate observed facts from interpretation.
+      label: Experiment mode
+      options:
+        - "Exploratory — establish a first baseline or discover viable directions"
+        - "Comparative — test a falsifiable hypothesis or compare alternatives"
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Delivery-risk lane
+      options:
+        - "Standard"
+        - "Strict — costly, cross-system, release-affecting, or hard to contain"
     validations:
       required: true
   - type: textarea
-    id: source
+    id: playable
     attributes:
-      label: Source and existing evidence
-      description: Link playtest notes, recording, save, current design, prior Issue, or exact legacy source. State what the evidence supports and does not support.
+      label: Current playable relationship
+      description: Link the current Slice/PLAYABLE revision. If this selects the first playable, state that bootstrap purpose explicitly.
+    validations:
+      required: true
+  - type: textarea
+    id: intent
+    attributes:
+      label: Experience intent or production problem
+      description: State what the player should experience or what production uncertainty prevents progress. Separate intent from observed fact.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_unknowns
+    attributes:
+      label: Starting evidence, assumptions, and unknowns
+      description: Link existing evidence when it exists. For a first exploratory pass, explicitly state that no baseline exists and what baseline will be created.
     validations:
       required: true
   - type: textarea
     id: question
     attributes:
-      label: Single design question
-      description: Write the important unknown this experiment will answer. Do not disguise a predetermined solution as a question.
+      label: Single experiment question
+      description: Write the smallest important unknown this work should reduce.
     validations:
       required: true
   - type: textarea
-    id: hypothesis
+    id: proposition
     attributes:
-      label: Falsifiable hypothesis
-      description: State the proposed relationship and what observation would weaken or falsify it.
+      label: Exploratory proposition or comparative hypothesis
+      description: Exploratory work states promising directions to expose; comparative work states what observation would weaken or falsify the hypothesis.
     validations:
       required: true
   - type: textarea
     id: prototype
     attributes:
-      label: Smallest useful prototype
-      description: Describe the minimum temporary behavior/content needed to answer the question, including what must not be productionized yet.
+      label: Cheapest useful prototype or spike
+      description: Choose paper, graybox, temporary code/content, measurement, or playtest. State what must not be productionized.
+    validations:
+      required: true
+  - type: textarea
+    id: envelope
+    attributes:
+      label: Iteration envelope
+      description: List what may change, allowed ranges/variants, what must remain invariant, and the maximum time or iteration count.
+      placeholder: |
+        May change:
+        Must not change:
+        Time/iteration budget:
     validations:
       required: true
   - type: textarea
     id: scenario
     attributes:
-      label: Fixed playtest scenario
-      description: Specify build, scene/level, character, enemies, inputs, duration, starting conditions, and comparison variant where applicable.
+      label: Fixed playable or evaluation scenario
+      description: Specify build, scene/setup, starting conditions, player profile, duration, and comparison variant where applicable.
     validations:
       required: true
   - type: textarea
     id: evidence_plan
     attributes:
-      label: Evidence collection and interpretation
-      description: Separate observable behavior or measurements from subjective judgment. Name who makes the final experience judgment.
+      label: Evidence and interpretation plan
+      description: Separate observed behavior, player statements, measurements, and owner judgment. Name the human creative/technical judge.
     validations:
       required: true
   - type: textarea
@@ -67,17 +103,17 @@ body:
     validations:
       required: true
   - type: textarea
-    id: milestone
+    id: disposition
     attributes:
-      label: Relationship to current playable milestone
-      description: Explain why resolving this question matters now. Link the milestone or playable-loop Issue.
+      label: Planned prototype disposition
+      description: State the likely delete/isolate/reuse/rewrite options and what decision must be recorded at closure.
     validations:
       required: true
   - type: textarea
     id: non_goals
     attributes:
       label: Non-goals
-      description: List at least one meaningful related question or production concern this experiment will not answer.
+      description: State what this Experiment will not answer or productionize.
     validations:
       required: true
   - type: checkboxes
@@ -85,7 +121,9 @@ body:
     attributes:
       label: Experiment contract
       options:
-        - label: I understand that failure or an inconclusive result can be a valid outcome.
+        - label: I understand that failure or an inconclusive result can be valid evidence.
           required: true
-        - label: I understand that production implementation requires a separate admitted implementation Issue.
+        - label: I will log envelope changes by build without rewriting the admitted body.
+          required: true
+        - label: Production adoption requires a current-design fragment and an admitted Implementation or Task.
           required: true

@@ -1,0 +1,82 @@
+# Executable mirror of docs/workflow/issues.md v0.2.
+name: Production task
+description: Deliver bounded code, level, content, asset, audio, UI, tooling, build, test, or debt work.
+title: "[Task] "
+labels:
+  - "type:task"
+  - "status:triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A Task delivers part of an accepted Slice or Implementation. It must not silently decide new player experience or architecture.
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Workstream
+      options:
+        - "Code or integration"
+        - "Graybox or level"
+        - "Content or data"
+        - "Art or animation"
+        - "VFX"
+        - "Audio"
+        - "UI/UX"
+        - "Narrative or localization"
+        - "Build, tooling, or import pipeline"
+        - "Tests or verification"
+        - "Technical debt"
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Delivery-risk lane
+      options:
+        - "Fast — local, reversible, and outside protected boundaries"
+        - "Standard"
+        - "Strict — save/data, cross-system, release, or costly change"
+    validations:
+      required: true
+  - type: textarea
+    id: parent
+    attributes:
+      label: Playable contribution and parent
+      description: Link the Slice/Implementation and explain the contribution. For bootstrap or maintenance, state why no playable parent exists.
+    validations:
+      required: true
+  - type: textarea
+    id: deliverable
+    attributes:
+      label: Concrete deliverable
+      description: State what code, scene, content, asset, tool, build, test, or debt reduction will exist when this Task is complete.
+    validations:
+      required: true
+  - type: textarea
+    id: integration
+    attributes:
+      label: Integration input and output
+      description: Name required inputs and where the result is consumed, imported, placed, called, or observed. For a standalone Fast task, a direct locator is enough.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Direct verification and rollback
+      description: Give the smallest check proving the deliverable works at this risk lane and how to revert or contain failure.
+    validations:
+      required: true
+  - type: textarea
+    id: debt
+    attributes:
+      label: Placeholders, debt, and non-goals
+      description: Record temporary inputs, unfinished polish, follow-up debt, and adjacent work excluded from this Task. Fast work may state none with a concrete boundary.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Task boundary
+      options:
+        - label: If this Task exposes an unresolved design or architecture decision, I will block it and open an Experiment or RFC.
+          required: true

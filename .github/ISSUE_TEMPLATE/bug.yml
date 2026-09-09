@@ -1,6 +1,6 @@
-# Executable mirror of docs/workflow/issues.md v0.1.
+# Executable mirror of docs/workflow/issues.md v0.2.
 name: Bug report
-description: Report behavior that contradicts an already accepted expectation.
+description: Report behavior that contradicts an accepted expectation, with evidence sized to player impact.
 title: "[Bug] "
 labels:
   - "type:bug"
@@ -9,7 +9,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        A submitted form is a draft, not authorization to implement. Unknown desired behavior belongs in an experiment or RFC rather than being asserted as a bug.
+        A submitted report is not authorization to implement. Blocker and data-loss reports may immediately stop distribution or preempt work while diagnosis continues.
   - type: checkboxes
     id: preflight
     attributes:
@@ -17,87 +17,70 @@ body:
       options:
         - label: I searched open and closed Issues for duplicates.
           required: true
-        - label: The expected behavior is already established by the game, current design, or an accepted decision.
+        - label: The expected behavior is already established; otherwise I will use an Experiment or RFC.
           required: true
-  - type: input
-    id: build
+  - type: dropdown
+    id: severity
     attributes:
-      label: Exact build or commit
-      description: Give the game version, build identifier, or commit SHA where this was observed.
-      placeholder: "build 0.1.12 / commit 0123abcd"
+      label: Player-impact severity
+      description: Blocker/data loss map to Strict, Major to at least Standard, and contained Normal/Cosmetic reports may use Fast.
+      options:
+        - "Blocker — current playable cannot start or continue"
+        - "Data loss — save, progress, settings, or authored content may be lost"
+        - "Major — core experience is broken without a reasonable workaround"
+        - "Normal — limited degradation or a workaround exists"
+        - "Cosmetic — presentation or text only"
     validations:
       required: true
   - type: textarea
-    id: environment
+    id: context
     attributes:
-      label: Platform and environment
-      description: Include OS, hardware/input device when relevant, and whether this is Editor or a player build.
+      label: Exact build and observation context
+      description: Give the build/commit, scene/save, platform, input, and other context relevant to reproducing this severity.
       placeholder: |
-        OS:
-        Build type:
-        Input device:
-        Relevant hardware:
+        Build/commit:
+        Scene/save/seed:
+        Platform and input:
+        Relevant local changes/mods:
     validations:
       required: true
   - type: textarea
-    id: starting_state
+    id: actual_expected
     attributes:
-      label: Starting state
-      description: Name the scene, save, seed, character, level, difficulty, mods/local changes, and other required preconditions.
-    validations:
-      required: true
-  - type: textarea
-    id: actual
-    attributes:
-      label: Actual behavior
-      description: Describe only what was observed. Include timing and frequency when relevant.
-    validations:
-      required: true
-  - type: textarea
-    id: expected
-    attributes:
-      label: Expected behavior and authority
-      description: State the expected result and link the current design, accepted Issue, prior behavior, or other authority establishing it.
+      label: Actual versus expected behavior
+      description: Separate what happened from the accepted expectation and link the authority for that expectation.
+      placeholder: |
+        Actual:
+        Expected:
+        Authority:
     validations:
       required: true
   - type: textarea
     id: reproduce
     attributes:
-      label: Reproduction steps
-      description: Start from the stated build and starting state. Number each action through the observed result.
-      placeholder: |
-        1. Load ...
-        2. Perform ...
-        3. Observe ...
+      label: Reproduction and frequency
+      description: Give the shortest path from the stated context to the failure and how often it occurs. A cosmetic report may use a direct locator and screenshot.
     validations:
       required: true
-  - type: dropdown
-    id: frequency
+  - type: textarea
+    id: impact
     attributes:
-      label: Reproduction frequency
-      options:
-        - Always
-        - Often
-        - Intermittent
-        - Once only
+      label: Playable impact and workaround
+      description: State which player journey is blocked/degraded and whether the player or developer can continue safely.
     validations:
       required: true
+  - type: textarea
+    id: data_loss
+    attributes:
+      label: Data-loss containment and recovery
+      description: Required for data loss. Name affected versions/data, backups, recovery options, distribution containment, and regression scope.
+  - type: textarea
+    id: regression
+    attributes:
+      label: Suspected regression range and verification scope
+      description: If known, identify the last good build/change and what adjacent behavior must be retested.
   - type: textarea
     id: evidence
     attributes:
       label: Evidence
-      description: Attach or link the smallest useful log, screenshot, video, replay, save, or profiler capture. Explain what part matters.
-  - type: textarea
-    id: milestone
-    attributes:
-      label: Playable impact
-      description: State which current playable scenario or milestone this blocks or degrades, and how.
-    validations:
-      required: true
-  - type: textarea
-    id: boundaries
-    attributes:
-      label: Initial scope boundary
-      description: List at least one related behavior this report is not asking to change. Reporters may state uncertainty for maintainer triage.
-    validations:
-      required: true
+      description: Attach or link the smallest useful log, screenshot, video, replay, save, crash dump, or profiler capture and explain what matters.
