@@ -1,0 +1,92 @@
+# Executable mirror of docs/workflow/issues.md v0.1.
+name: Design experiment
+description: Test a player-experience hypothesis without pretending the final design is known.
+title: "[Experiment] "
+labels:
+  - "type:experiment"
+  - "status:triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This Issue authorizes only a bounded prototype and evidence collection after admission. A prototype is not automatically accepted production design.
+  - type: textarea
+    id: observation
+    attributes:
+      label: Player problem or observation
+      description: Who encounters what problem, in which play moment? Separate observed facts from interpretation.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source and existing evidence
+      description: Link playtest notes, recording, save, current design, prior Issue, or exact legacy source. State what the evidence supports and does not support.
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Single design question
+      description: Write the important unknown this experiment will answer. Do not disguise a predetermined solution as a question.
+    validations:
+      required: true
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Falsifiable hypothesis
+      description: State the proposed relationship and what observation would weaken or falsify it.
+    validations:
+      required: true
+  - type: textarea
+    id: prototype
+    attributes:
+      label: Smallest useful prototype
+      description: Describe the minimum temporary behavior/content needed to answer the question, including what must not be productionized yet.
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Fixed playtest scenario
+      description: Specify build, scene/level, character, enemies, inputs, duration, starting conditions, and comparison variant where applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_plan
+    attributes:
+      label: Evidence collection and interpretation
+      description: Separate observable behavior or measurements from subjective judgment. Name who makes the final experience judgment.
+    validations:
+      required: true
+  - type: textarea
+    id: stop
+    attributes:
+      label: Stop conditions and possible decisions
+      description: State when to stop and how accept, revise, reject, or inconclusive outcomes will be distinguished.
+    validations:
+      required: true
+  - type: textarea
+    id: milestone
+    attributes:
+      label: Relationship to current playable milestone
+      description: Explain why resolving this question matters now. Link the milestone or playable-loop Issue.
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: List at least one meaningful related question or production concern this experiment will not answer.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Experiment contract
+      options:
+        - label: I understand that failure or an inconclusive result can be a valid outcome.
+          required: true
+        - label: I understand that production implementation requires a separate admitted implementation Issue.
+          required: true
+

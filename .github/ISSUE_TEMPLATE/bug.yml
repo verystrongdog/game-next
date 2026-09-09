@@ -1,0 +1,104 @@
+# Executable mirror of docs/workflow/issues.md v0.1.
+name: Bug report
+description: Report behavior that contradicts an already accepted expectation.
+title: "[Bug] "
+labels:
+  - "type:bug"
+  - "status:triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A submitted form is a draft, not authorization to implement. Unknown desired behavior belongs in an experiment or RFC rather than being asserted as a bug.
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched open and closed Issues for duplicates.
+          required: true
+        - label: The expected behavior is already established by the game, current design, or an accepted decision.
+          required: true
+  - type: input
+    id: build
+    attributes:
+      label: Exact build or commit
+      description: Give the game version, build identifier, or commit SHA where this was observed.
+      placeholder: "build 0.1.12 / commit 0123abcd"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Platform and environment
+      description: Include OS, hardware/input device when relevant, and whether this is Editor or a player build.
+      placeholder: |
+        OS:
+        Build type:
+        Input device:
+        Relevant hardware:
+    validations:
+      required: true
+  - type: textarea
+    id: starting_state
+    attributes:
+      label: Starting state
+      description: Name the scene, save, seed, character, level, difficulty, mods/local changes, and other required preconditions.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Describe only what was observed. Include timing and frequency when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior and authority
+      description: State the expected result and link the current design, accepted Issue, prior behavior, or other authority establishing it.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Start from the stated build and starting state. Number each action through the observed result.
+      placeholder: |
+        1. Load ...
+        2. Perform ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Reproduction frequency
+      options:
+        - Always
+        - Often
+        - Intermittent
+        - Once only
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Attach or link the smallest useful log, screenshot, video, replay, save, or profiler capture. Explain what part matters.
+  - type: textarea
+    id: milestone
+    attributes:
+      label: Playable impact
+      description: State which current playable scenario or milestone this blocks or degrades, and how.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Initial scope boundary
+      description: List at least one related behavior this report is not asking to change. Reporters may state uncertainty for maintainer triage.
+    validations:
+      required: true
+

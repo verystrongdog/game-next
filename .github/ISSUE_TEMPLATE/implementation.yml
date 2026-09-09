@@ -1,0 +1,90 @@
+# Executable mirror of docs/workflow/issues.md v0.1.
+name: Design implementation
+description: Implement player-visible behavior that has already been accepted.
+title: "[Implementation] "
+labels:
+  - "type:implementation"
+  - "status:triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not use this form to decide what the game should be. Unresolved design belongs in an experiment or RFC.
+  - type: input
+    id: milestone
+    attributes:
+      label: Current playable milestone
+      description: Link the milestone or playable-loop Issue this implementation advances.
+    validations:
+      required: true
+  - type: textarea
+    id: authority
+    attributes:
+      label: Accepted design authority and revision
+      description: Link the current-design document, ADR, or accepted experiment and name its exact approved revision/decision.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Player-visible behavior
+      description: Describe what the player can do and what the game visibly or audibly does in response.
+    validations:
+      required: true
+  - type: textarea
+    id: rules
+    attributes:
+      label: Rules, states, and boundaries
+      description: State triggers, transitions, numerical rules, priority, failure behavior, save/load implications, and meaningful edge cases.
+    validations:
+      required: true
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Presentation and comprehension feedback
+      description: Specify the animation, VFX, audio, camera, input, or UI feedback required for the player to understand the behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Behavioral acceptance cases
+      description: Each item must contain a precondition, player/system action, and observable result. Avoid implementation-detail checks.
+      placeholder: |
+        - Given ..., when ..., then the player observes ...
+        - Given ..., when ..., then ...
+    validations:
+      required: true
+  - type: textarea
+    id: playable_verification
+    attributes:
+      label: Playable verification
+      description: Name the build and scene/level/setup in which the completed behavior will be played and judged.
+    validations:
+      required: true
+  - type: textarea
+    id: affected
+    attributes:
+      label: Affected boundaries and dependencies
+      description: Identify expected impact on Core rules, Unity presentation, content/data, persistence, tooling, and other mechanics. Link dependencies.
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: List at least one meaningful related behavior or refactor excluded from this implementation.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Implementation contract
+      options:
+        - label: The cited design is accepted and current, not merely a discussion or legacy document.
+          required: true
+        - label: No unresolved question remains that could materially change player-visible behavior or architecture.
+          required: true
+        - label: A substantive specification edit will invalidate admission and return this Issue to triage.
+          required: true
+

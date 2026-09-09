@@ -1,0 +1,90 @@
+# Executable mirror of docs/workflow/issues.md v0.1.
+name: Request for comments
+description: Decide a consequential game, architecture, compatibility, or workflow question.
+title: "[RFC] "
+labels:
+  - "type:rfc"
+  - "status:triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        An RFC authorizes analysis, discussion, and explicitly bounded prototypes. It does not authorize production implementation until accepted.
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision to make
+      description: State one consequential question and why a durable decision is necessary now.
+    validations:
+      required: true
+  - type: textarea
+    id: milestone
+    attributes:
+      label: Relationship to current playable milestone
+      description: Link the affected milestone or explain the concrete future constraint this decision protects.
+    validations:
+      required: true
+  - type: textarea
+    id: current_state
+    attributes:
+      label: Current state and constraints
+      description: Describe existing behavior, accepted boundaries, compatibility needs, and evidence. Separate facts from assumptions.
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Credible options
+      description: Compare at least two real alternatives and include doing nothing when meaningful. Give benefits, costs, risks, and unknowns for each.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed decision and rationale
+      description: State the current recommendation and why it best fits the evidence and constraints. It remains a proposal until accepted.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and bounded prototypes
+      description: Link code, tests, measurements, diagrams, playtests, or temporary prototypes. State important evidence still missing.
+    validations:
+      required: true
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Consequences and affected boundaries
+      description: Include new constraints, removed options, Core/Unity/data ownership, compatibility, maintenance cost, and likely follow-up work.
+    validations:
+      required: true
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Migration, rollback, and failure modes
+      description: Explain how to adopt, reverse, or contain the decision and what can go wrong.
+    validations:
+      required: true
+  - type: textarea
+    id: close_condition
+    attributes:
+      label: Decision and close condition
+      description: Name the owner, what evidence or discussion is still required, and which ADR/current-design artifact will record acceptance.
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: List at least one adjacent decision or implementation concern excluded from this RFC.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: RFC contract
+      options:
+        - label: I understand that opening or discussing this RFC does not approve production implementation.
+          required: true
+

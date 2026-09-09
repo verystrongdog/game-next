@@ -1,0 +1,63 @@
+name: Issue specification guard
+
+on:
+  issues:
+    types: [edited]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  invalidate-admission:
+    if: >-
+      github.event.issue.state == 'open' &&
+      (contains(github.event.issue.labels.*.name, 'status:ready') ||
+       contains(github.event.issue.labels.*.name, 'status:in-progress') ||
+       contains(github.event.issue.labels.*.name, 'status:verify'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Return edited specification to triage
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.issue.number;
+            const active = ['status:ready', 'status:in-progress', 'status:verify'];
+            const present = context.payload.issue.labels
+              .map(label => typeof label === 'string' ? label : label.name)
+              .filter(Boolean);
+
+            for (const name of active) {
+              if (!present.includes(name)) continue;
+              try {
+                await github.rest.issues.removeLabel({ owner, repo, issue_number, name });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+              }
+            }
+
+            await github.rest.issues.addLabels({
+              owner,
+              repo,
+              issue_number,
+              labels: ['status:triage', 'needs:admission-review'],
+            });
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: [
+                '## Specification admission invalidated',
+                '',
+                'The Issue body changed after admission. Under `docs/workflow/issues.md` v0.1, work is no longer authorized against the previous revision.',
+                '',
+                'Required next steps:',
+                '1. Describe the change in a revision comment.',
+                '2. Assign the next `rN` specification revision.',
+                '3. Repeat adversarial admission review and owner confirmation.',
+                '4. Remove `needs:admission-review` only after the new revision is admitted.',
+              ].join('\n'),
+            });
