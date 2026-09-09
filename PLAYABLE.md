@@ -23,6 +23,13 @@ Until the first target is selected, only the following work may be admitted:
 Do not invent game behavior merely to fill this file. Replace the draft fields
 below only after the owner admits a Slice Issue as `status:ready`.
 
+## Active pre-Playable evidence work
+
+- [Experiment #1 — Mixamo humanoid retargeting and animation transitions](https://github.com/verystrongdog/game-next/issues/1)
+  investigates the external humanoid animation path. Its contract, live status,
+  and evidence remain canonical in the Issue; it does not select the first
+  Playable or authorize production adoption.
+
 ## Current contract
 
 - **Player promise:** not selected
